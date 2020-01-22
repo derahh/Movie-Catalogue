@@ -1,0 +1,50 @@
+<resources>
+    <string name="app_name">Movie Catalogue</string>
+    <string name="lorem">lorem ipsum dolor sit amet</string>
+    <string name="title_movie">Movie Title</string>
+    <string name="todo">TODO</string>
+    <string name="year">Year</string>
+    <string name="user_score">User Score</string>
+    <string name="overview">Overview</string>
+    <string name="change_language_settings">Change Language Settings</string>
+
+    <string name="image_toolbar">https://offthemikedotcom.files.wordpress.com/2018/01/movie-theater2.jpg</string>
+    <string name="no_data">No Data</string>
+    <string name="category_movie">Movie</string>
+    <string name="category_tv_show">TV Show</string>
+    <string name="category_favorite">Favorite</string>
+    <string name="search">Search</string>
+
+    <string-array name="data_title_tab">
+        <item>Movies</item>
+        <item>TV Shows</item>
+    </string-array>
+
+    <string-array name="data_title_app">
+        <item>Movie Detail</item>
+        <item>TV Show Detail</item>
+    </string-array>
+
+    <string name="appwidget_text">Favorite Movie</string>
+    <string name="add_widget">FAVORITE MOVIE BANNER</string>
+    <string name="empty_text">NO DATA</string>
+    <string name="user_preference">User Preference Setting</string>
+
+    <string name="off">Off</string>
+    <string name="on">On</string>
+
+    <string name="title_release_reminder">Release Reminder</string>
+    <string name="key_release_reminder">relase_reminder</string>
+    <string name="key_daily_reminder">daily_reminder</string>
+    <string name="title_daily_reminder">Daily Reminder</string>
+    <string name="switch_text_release_reminder">Reminder showing the movie that released today</string>
+    <string name="switch_text_daily_reminder">Reminder to return to app</string>
+    <string name="toast_failed">Failed load today release movie.</string>
+    <string name="release_today">Movie Release Today</string>
+    <string name="reminder_setting">Reminder Setting</string>
+    <string name="message_daily">Movie Catalogue missing you</string>
+    <string name="search_movie">Search Movie</string>
+    <string name="search_tv_show">Search Tv Show</string>
+    <string name="has_release_today"> has been release today!</string>
+    <string name="search_result">Search Result</string>
+</resources>
