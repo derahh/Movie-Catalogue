@@ -7,7 +7,7 @@ import retrofit2.http.Query;
 
 public interface APIService {
 
-    @GET("now_playing")
+    @GET("movie/now_playing")
     Call<Result> getAllMovie(
             @Query("api_key") String key,
             @Query("language") String language

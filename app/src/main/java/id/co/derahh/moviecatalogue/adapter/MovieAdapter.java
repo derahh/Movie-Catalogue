@@ -3,6 +3,7 @@ package id.co.derahh.moviecatalogue.adapter;
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -56,12 +57,14 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.ViewHolder> 
         viewHolder.tvTitle.setText(getListData().get(i).getTitle());
         viewHolder.tvDescription.setText(getListData().get(i).getDescription());
         Glide.with(mContext).load(getListData().get(i).getPhoto()).into(viewHolder.imgPhoto);
+        Log.i("list photo", getListData().get(i).getPhoto());
 
         viewHolder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 movie = getListData().get(i);
                 showSelectedMovie(movie, i);
+                Log.i("extra_poster", movie.getPosterPath());
             }
         });
     }

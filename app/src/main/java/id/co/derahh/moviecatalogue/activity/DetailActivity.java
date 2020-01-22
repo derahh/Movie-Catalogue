@@ -21,6 +21,7 @@ import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.request.RequestOptions;
 
 import id.co.derahh.moviecatalogue.Model.TvShow;
+import id.co.derahh.moviecatalogue.Model.movie.Movie;
 import id.co.derahh.moviecatalogue.R;
 import id.co.derahh.moviecatalogue.database.MovieHelper;
 import id.co.derahh.moviecatalogue.database.TvShowHelper;
@@ -101,7 +102,8 @@ public class DetailActivity extends AppCompatActivity {
                 .diskCacheStrategy(DiskCacheStrategy.ALL)
                 .priority(Priority.HIGH);
 
-        Glide.with(this).load(movie.getPhoto()).apply(options).into(imgPhoto);
+        Glide.with(this).load( movie.getPhoto()).apply(options).into(imgPhoto);
+        Log.i("photo", movie.getPhoto());
 
         GradientDrawable gradientDrawable = (GradientDrawable) tvUserScore.getBackground();
         int userScoreColor = getUserScoreColor(movie.getUserScore());
