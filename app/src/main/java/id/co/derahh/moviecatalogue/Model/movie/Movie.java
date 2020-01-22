@@ -1,12 +1,14 @@
-package id.co.derahh.moviecatalogue.Model;
+package id.co.derahh.moviecatalogue.Model.movie;
 
 import android.database.Cursor;
 import android.os.Parcel;
 import android.os.Parcelable;
 
-import id.co.derahh.moviecatalogue.database.DatabaseContract.MovieColumns;
+import com.google.gson.annotations.SerializedName;
 
 import org.json.JSONObject;
+
+import id.co.derahh.moviecatalogue.database.DatabaseContract.MovieColumns;
 
 import static android.provider.BaseColumns._ID;
 import static id.co.derahh.moviecatalogue.database.DatabaseContract.getColumnDouble;
@@ -15,9 +17,19 @@ import static id.co.derahh.moviecatalogue.database.DatabaseContract.getColumnStr
 
 public class Movie implements Parcelable {
 
+    @SerializedName("id")
     private int id;
+    @SerializedName("vote_average")
     private double userScore;
-    private String title, year, description, photo;
+    private String title;
+    @SerializedName("release_date")
+    private String year;
+    @SerializedName("overview")
+    private String description;
+    @SerializedName("poster_path")
+    private String posterPath;
+
+    private String photo;
 
     public Movie(JSONObject currentMovie) {
         try {
@@ -90,11 +102,19 @@ public class Movie implements Parcelable {
     }
 
     public String getPhoto() {
-        return photo;
+        return "https://image.tmdb.org/t/p/w342/" + getPosterPath();
     }
 
     public void setPhoto(String photo) {
         this.photo = photo;
+    }
+
+    public String getPosterPath() {
+        return posterPath;
+    }
+
+    public void setPosterPath(String posterPath) {
+        this.posterPath = posterPath;
     }
 
     @Override

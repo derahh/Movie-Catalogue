@@ -29,10 +29,9 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import org.jetbrains.annotations.NotNull;
 
-import java.util.ArrayList;
 import java.util.Objects;
 
-import id.co.derahh.moviecatalogue.Model.Movie;
+import id.co.derahh.moviecatalogue.Model.movie.*;
 import id.co.derahh.moviecatalogue.R;
 import id.co.derahh.moviecatalogue.activity.SearchActivity;
 import id.co.derahh.moviecatalogue.adapter.MovieAdapter;
@@ -114,11 +113,11 @@ public class MovieFragment extends Fragment {
         }
     }
 
-    private Observer<ArrayList<Movie>> getMovie = new Observer<ArrayList<Movie>>() {
+    private Observer<Result> getMovie = new Observer<Result>() {
         @Override
-        public void onChanged(@Nullable ArrayList<Movie> movies) {
-            if (movies != null) {
-                adapter.setListData(movies);
+        public void onChanged(@Nullable Result results) {
+            if (results != null) {
+                adapter.setListData(results.getResults());
                 progressBar.setVisibility(View.GONE);
             }else {
                 tvNoData.setVisibility(View.VISIBLE);

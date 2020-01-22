@@ -30,7 +30,6 @@ import java.util.Date;
 import java.util.Locale;
 
 import cz.msebera.android.httpclient.Header;
-import id.co.derahh.moviecatalogue.Model.Movie;
 import id.co.derahh.moviecatalogue.R;
 import id.co.derahh.moviecatalogue.activity.DetailActivity;
 import id.co.derahh.moviecatalogue.database.DatabaseContract;

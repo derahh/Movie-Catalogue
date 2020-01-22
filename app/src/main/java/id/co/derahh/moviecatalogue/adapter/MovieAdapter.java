@@ -15,8 +15,9 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 
 import java.util.ArrayList;
+import java.util.List;
 
-import id.co.derahh.moviecatalogue.Model.Movie;
+import id.co.derahh.moviecatalogue.Model.movie.Movie;
 import id.co.derahh.moviecatalogue.R;
 import id.co.derahh.moviecatalogue.activity.DetailActivity;
 
@@ -27,17 +28,17 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.ViewHolder> 
     private Context mContext;
     private Movie movie;
 
-    private ArrayList<Movie> getListData() {
+    private List<Movie> getListData() {
         return listData;
     }
 
-    public void setListData(ArrayList<Movie> listData) {
+    public void setListData(List<Movie> listData) {
         this.listData.clear();
         this.listData = listData;
         notifyDataSetChanged();
     }
 
-    private ArrayList<Movie> listData = new ArrayList<>();
+    private List<Movie> listData = new ArrayList<>();
 
     public MovieAdapter(Context context) {
         mContext = context;

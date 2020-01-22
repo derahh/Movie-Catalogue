@@ -13,8 +13,9 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
+import java.util.List;
 
-import id.co.derahh.moviecatalogue.Model.Movie;
+import id.co.derahh.moviecatalogue.Model.movie.Movie;
 import id.co.derahh.moviecatalogue.Model.TvShow;
 import id.co.derahh.moviecatalogue.R;
 import id.co.derahh.moviecatalogue.adapter.MovieAdapter;
@@ -70,9 +71,9 @@ public class SearchActivity extends AppCompatActivity {
         searchTvShowViewModel.getSearchTvShow().observe(this, getListTvShow);
     }
 
-    private final Observer<ArrayList<Movie>> getListMovie = new Observer<ArrayList<Movie>>() {
+    private final Observer<List<Movie>> getListMovie = new Observer<List<Movie>>() {
         @Override
-        public void onChanged(@Nullable ArrayList<Movie> movies) {
+        public void onChanged(@Nullable List<Movie> movies) {
             if (movies != null) {
                 if (movies.size() > 0) {
                     showSearchMovieRecyclerView(movies);
@@ -100,7 +101,7 @@ public class SearchActivity extends AppCompatActivity {
         }
     };
 
-    private void showSearchMovieRecyclerView(ArrayList<Movie> movies) {
+    private void showSearchMovieRecyclerView(List<Movie> movies) {
         MovieAdapter searchMovieAdapter = new MovieAdapter(this);
         searchMovieAdapter.notifyDataSetChanged();
         searchMovieAdapter.setListData(movies);

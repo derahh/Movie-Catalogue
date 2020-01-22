@@ -14,17 +14,18 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Locale;
 
 import cz.msebera.android.httpclient.Header;
-import id.co.derahh.moviecatalogue.Model.Movie;
+import id.co.derahh.moviecatalogue.Model.movie.Movie;
 import id.co.derahh.moviecatalogue.Model.TvShow;
 
 public class SearchViewModel extends ViewModel {
 
     private static final String TAG = MovieViewModel.class.getSimpleName();
     private static final String API_KEY = "06b9cd349f041c2e51292a90868062fc";
-    private MutableLiveData<ArrayList<Movie>> listSearchMovies = new MutableLiveData<>();
+    private MutableLiveData<List<Movie>> listSearchMovies = new MutableLiveData<>();
     private MutableLiveData<ArrayList<TvShow>> listSearchTvShow = new MutableLiveData<>();
 
     public void searchMovie(String query) {
@@ -67,7 +68,7 @@ public class SearchViewModel extends ViewModel {
         });
     }
 
-    public LiveData<ArrayList<Movie>> getSearchMovie() {
+    public LiveData<List<Movie>> getSearchMovie() {
         return listSearchMovies;
     }
 

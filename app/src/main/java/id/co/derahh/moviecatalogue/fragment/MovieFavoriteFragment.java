@@ -26,7 +26,6 @@ import java.util.ArrayList;
 import java.util.Objects;
 
 import id.co.derahh.moviecatalogue.LoadMovieCallback;
-import id.co.derahh.moviecatalogue.Model.Movie;
 import id.co.derahh.moviecatalogue.R;
 import id.co.derahh.moviecatalogue.adapter.MovieFavoriteAdapter;
 import id.co.derahh.moviecatalogue.database.MovieHelper;

@@ -16,7 +16,6 @@ import com.bumptech.glide.Glide;
 
 import java.util.ArrayList;
 
-import id.co.derahh.moviecatalogue.Model.Movie;
 import id.co.derahh.moviecatalogue.R;
 import id.co.derahh.moviecatalogue.activity.DetailActivity;
 
