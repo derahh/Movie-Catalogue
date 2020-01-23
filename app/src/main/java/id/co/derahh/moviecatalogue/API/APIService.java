@@ -26,4 +26,11 @@ public interface APIService {
             @Query("language") String language,
             @Query("query") String query
     );
+
+    @GET("search/tv")
+    Call<TvShowResult> getSearchTvShow(
+            @Query("api_key") String key,
+            @Query("language") String language,
+            @Query("query") String query
+    );
 }

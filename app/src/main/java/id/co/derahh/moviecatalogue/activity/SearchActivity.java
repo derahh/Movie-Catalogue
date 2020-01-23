@@ -20,6 +20,7 @@ import id.co.derahh.moviecatalogue.model.tvShow.TvShow;
 import id.co.derahh.moviecatalogue.R;
 import id.co.derahh.moviecatalogue.adapter.MovieAdapter;
 import id.co.derahh.moviecatalogue.adapter.TvShowAdapter;
+import id.co.derahh.moviecatalogue.model.tvShow.TvShowResult;
 import id.co.derahh.moviecatalogue.viewModel.SearchViewModel;
 
 public class SearchActivity extends AppCompatActivity {
@@ -86,12 +87,12 @@ public class SearchActivity extends AppCompatActivity {
         }
     };
 
-    private final Observer<List<TvShow>> getListTvShow = new Observer<List<TvShow>>() {
+    private final Observer<TvShowResult> getListTvShow = new Observer<TvShowResult>() {
         @Override
-        public void onChanged(@Nullable List<TvShow> tvShows) {
-            if (tvShows != null) {
-                if (tvShows.size() > 0) {
-                    showSearchTvShowRecyclerView(tvShows);
+        public void onChanged(@Nullable TvShowResult result) {
+            if (result != null) {
+                if (result != null) {
+                    showSearchTvShowRecyclerView(result.getResults());
                     progressBar.setVisibility(View.GONE);
                 } else {
                     tvNoData.setVisibility(View.VISIBLE);
