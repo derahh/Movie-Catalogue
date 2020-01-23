@@ -1,4 +1,4 @@
-package id.co.derahh.moviecatalogue.Model.movie;
+package id.co.derahh.moviecatalogue.model.tvShow;
 
 import android.database.Cursor;
 import android.os.Parcel;
@@ -8,22 +8,22 @@ import com.google.gson.annotations.SerializedName;
 
 import org.json.JSONObject;
 
-import id.co.derahh.moviecatalogue.database.DatabaseContract.MovieColumns;
+import id.co.derahh.moviecatalogue.database.DatabaseContract.TvShowColumns;
 
 import static android.provider.BaseColumns._ID;
 import static id.co.derahh.moviecatalogue.database.DatabaseContract.getColumnDouble;
 import static id.co.derahh.moviecatalogue.database.DatabaseContract.getColumnInt;
 import static id.co.derahh.moviecatalogue.database.DatabaseContract.getColumnString;
 
-public class Movie implements Parcelable {
+public class TvShow implements Parcelable {
 
     @SerializedName("id")
     private int id;
     @SerializedName("vote_average")
     private double userScore;
-    @SerializedName("title")
+    @SerializedName("name")
     private String title;
-    @SerializedName("release_date")
+    @SerializedName("first_air_date")
     private String year;
     @SerializedName("overview")
     private String description;
@@ -32,12 +32,12 @@ public class Movie implements Parcelable {
 
     private String photo;
 
-    public Movie(JSONObject currentMovie) {
+    public TvShow(JSONObject currentMovie) {
         try {
             int id = currentMovie.getInt("id");
             double userScore = currentMovie.getDouble("vote_average");
-            String title = currentMovie.getString("title");
-            String year = currentMovie.getString("release_date");
+            String title = currentMovie.getString("name");
+            String year = currentMovie.getString("first_air_date");
             String description = currentMovie.getString("overview");
             String posterPath = currentMovie.getString("poster_path");
             String photo = "https://image.tmdb.org/t/p/w342/" + posterPath;
@@ -53,13 +53,13 @@ public class Movie implements Parcelable {
         }
     }
 
-    public Movie(Cursor cursor){
+    public TvShow(Cursor cursor){
         this.id = getColumnInt(cursor, _ID);
-        this.userScore = getColumnDouble(cursor, MovieColumns.userScore);
-        this.title = getColumnString(cursor, MovieColumns.title);
-        this.year = getColumnString(cursor, MovieColumns.year);
-        this.description = getColumnString(cursor, MovieColumns.description);
-        this.photo = getColumnString(cursor, MovieColumns.photo);
+        this.userScore = getColumnDouble(cursor, TvShowColumns.userScore);
+        this.title = getColumnString(cursor, TvShowColumns.title);
+        this.year = getColumnString(cursor, TvShowColumns.year);
+        this.description = getColumnString(cursor, TvShowColumns.description);
+        this.photo = getColumnString(cursor, TvShowColumns.photo);
     }
 
     public int getId() {
@@ -118,7 +118,7 @@ public class Movie implements Parcelable {
         this.posterPath = posterPath;
     }
 
-    public Movie() {
+    public TvShow() {
     }
 
     @Override
@@ -137,7 +137,7 @@ public class Movie implements Parcelable {
         dest.writeString(this.photo);
     }
 
-    protected Movie(Parcel in) {
+    protected TvShow(Parcel in) {
         this.id = in.readInt();
         this.userScore = in.readDouble();
         this.title = in.readString();
@@ -147,15 +147,15 @@ public class Movie implements Parcelable {
         this.photo = in.readString();
     }
 
-    public static final Creator<Movie> CREATOR = new Creator<Movie>() {
+    public static final Creator<TvShow> CREATOR = new Creator<TvShow>() {
         @Override
-        public Movie createFromParcel(Parcel source) {
-            return new Movie(source);
+        public TvShow createFromParcel(Parcel source) {
+            return new TvShow(source);
         }
 
         @Override
-        public Movie[] newArray(int size) {
-            return new Movie[size];
+        public TvShow[] newArray(int size) {
+            return new TvShow[size];
         }
     };
 }

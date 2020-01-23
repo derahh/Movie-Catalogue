@@ -26,7 +26,7 @@ import java.util.ArrayList;
 import java.util.Objects;
 
 import id.co.derahh.moviecatalogue.LoadMovieCallback;
-import id.co.derahh.moviecatalogue.Model.TvShow;
+import id.co.derahh.moviecatalogue.model.TvShow;
 import id.co.derahh.moviecatalogue.R;
 import id.co.derahh.moviecatalogue.adapter.TvShowFavoriteAdapter;
 import id.co.derahh.moviecatalogue.database.DatabaseContract;

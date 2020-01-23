@@ -1,8 +1,8 @@
-package id.co.derahh.moviecatalogue.Model.tvShow;
+package id.co.derahh.moviecatalogue.model.tvShow;
 
 import java.util.List;
 
-public class Result {
+public class TvShowResult {
 
     private List<TvShow> results;
 

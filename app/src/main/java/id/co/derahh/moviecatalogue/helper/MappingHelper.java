@@ -4,8 +4,8 @@ import android.database.Cursor;
 
 import java.util.ArrayList;
 
-import id.co.derahh.moviecatalogue.Model.TvShow;
-import id.co.derahh.moviecatalogue.Model.movie.Movie;
+import id.co.derahh.moviecatalogue.model.TvShow;
+import id.co.derahh.moviecatalogue.model.movie.Movie;
 import id.co.derahh.moviecatalogue.database.DatabaseContract.TvShowColumns;
 
 import static android.provider.BaseColumns._ID;

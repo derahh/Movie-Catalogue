@@ -31,7 +31,7 @@ import org.jetbrains.annotations.NotNull;
 
 import java.util.Objects;
 
-import id.co.derahh.moviecatalogue.Model.movie.*;
+import id.co.derahh.moviecatalogue.model.movie.*;
 import id.co.derahh.moviecatalogue.R;
 import id.co.derahh.moviecatalogue.activity.SearchActivity;
 import id.co.derahh.moviecatalogue.adapter.MovieAdapter;
@@ -113,9 +113,9 @@ public class MovieFragment extends Fragment {
         }
     }
 
-    private Observer<Result> getMovie = new Observer<Result>() {
+    private Observer<MovieResult> getMovie = new Observer<MovieResult>() {
         @Override
-        public void onChanged(@Nullable Result results) {
+        public void onChanged(@Nullable MovieResult results) {
             if (results != null) {
                 adapter.setListData(results.getResults());
                 progressBar.setVisibility(View.GONE);

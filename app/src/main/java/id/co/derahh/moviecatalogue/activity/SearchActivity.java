@@ -12,11 +12,10 @@ import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import java.util.ArrayList;
 import java.util.List;
 
-import id.co.derahh.moviecatalogue.Model.movie.Movie;
-import id.co.derahh.moviecatalogue.Model.TvShow;
+import id.co.derahh.moviecatalogue.model.movie.Movie;
+import id.co.derahh.moviecatalogue.model.tvShow.TvShow;
 import id.co.derahh.moviecatalogue.R;
 import id.co.derahh.moviecatalogue.adapter.MovieAdapter;
 import id.co.derahh.moviecatalogue.adapter.TvShowAdapter;
@@ -86,9 +85,9 @@ public class SearchActivity extends AppCompatActivity {
         }
     };
 
-    private final Observer<ArrayList<TvShow>> getListTvShow = new Observer<ArrayList<TvShow>>() {
+    private final Observer<List<TvShow>> getListTvShow = new Observer<List<TvShow>>() {
         @Override
-        public void onChanged(@Nullable ArrayList<TvShow> tvShows) {
+        public void onChanged(@Nullable List<TvShow> tvShows) {
             if (tvShows != null) {
                 if (tvShows.size() > 0) {
                     showSearchTvShowRecyclerView(tvShows);
@@ -112,7 +111,7 @@ public class SearchActivity extends AppCompatActivity {
         rvListSearchMovie.setAdapter(searchMovieAdapter);
     }
 
-    private void showSearchTvShowRecyclerView(ArrayList<TvShow> tvShows) {
+    private void showSearchTvShowRecyclerView(List<TvShow> tvShows) {
         TvShowAdapter searchTvShowAdapter = new TvShowAdapter(this);
         searchTvShowAdapter.notifyDataSetChanged();
         searchTvShowAdapter.setListData(tvShows);

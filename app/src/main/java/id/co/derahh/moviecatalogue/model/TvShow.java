@@ -1,4 +1,4 @@
-package id.co.derahh.moviecatalogue.Model;
+package id.co.derahh.moviecatalogue.model;
 
 import android.database.Cursor;
 import android.os.Parcel;

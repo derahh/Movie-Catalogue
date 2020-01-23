@@ -28,12 +28,14 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
-import id.co.derahh.moviecatalogue.Model.TvShow;
+import id.co.derahh.moviecatalogue.model.TvShow;
 import id.co.derahh.moviecatalogue.R;
 import id.co.derahh.moviecatalogue.activity.SearchActivity;
 import id.co.derahh.moviecatalogue.adapter.TvShowAdapter;
+import id.co.derahh.moviecatalogue.model.tvShow.TvShowResult;
 import id.co.derahh.moviecatalogue.viewModel.MovieViewModel;
 
 /**
@@ -113,11 +115,11 @@ public class TvShowFragment extends Fragment {
         }
     }
 
-    private Observer<ArrayList<TvShow>> getTvShow = new Observer<ArrayList<TvShow>>() {
+    private Observer<TvShowResult> getTvShow = new Observer<TvShowResult>() {
         @Override
-        public void onChanged(@Nullable ArrayList<TvShow> tvShows) {
-            if (tvShows != null) {
-                adapter.setListData(tvShows);
+        public void onChanged(@Nullable TvShowResult results) {
+            if (results != null) {
+                adapter.setListData(results.getResults());
                 progressBar.setVisibility(View.GONE);
             }else {
                 tvNoData.setVisibility(View.VISIBLE);

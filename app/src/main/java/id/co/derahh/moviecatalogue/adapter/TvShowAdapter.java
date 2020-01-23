@@ -15,8 +15,9 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 
 import java.util.ArrayList;
+import java.util.List;
 
-import id.co.derahh.moviecatalogue.Model.TvShow;
+import id.co.derahh.moviecatalogue.model.tvShow.TvShow;
 import id.co.derahh.moviecatalogue.R;
 import id.co.derahh.moviecatalogue.activity.DetailActivity;
 
@@ -26,17 +27,17 @@ public class TvShowAdapter extends RecyclerView.Adapter<TvShowAdapter.TvShowView
 
     private Context mContext;
     private TvShow tvShow;
-    private ArrayList<TvShow> getListData() {
+    private List<TvShow> getListData() {
         return listData;
     }
 
-    public void setListData(ArrayList<TvShow> listData) {
+    public void setListData(List<TvShow> listData) {
         this.listData.clear();
         this.listData = listData;
         notifyDataSetChanged();
     }
 
-    private ArrayList<TvShow> listData = new ArrayList<>();
+    private List<TvShow> listData = new ArrayList<>();
 
     public TvShowAdapter(Context context) {
         mContext = context;

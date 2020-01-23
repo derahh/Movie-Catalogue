@@ -18,15 +18,15 @@ import java.util.List;
 import java.util.Locale;
 
 import cz.msebera.android.httpclient.Header;
-import id.co.derahh.moviecatalogue.Model.movie.Movie;
-import id.co.derahh.moviecatalogue.Model.TvShow;
+import id.co.derahh.moviecatalogue.model.movie.Movie;
+import id.co.derahh.moviecatalogue.model.tvShow.TvShow;
 
 public class SearchViewModel extends ViewModel {
 
     private static final String TAG = MovieViewModel.class.getSimpleName();
     private static final String API_KEY = "06b9cd349f041c2e51292a90868062fc";
     private MutableLiveData<List<Movie>> listSearchMovies = new MutableLiveData<>();
-    private MutableLiveData<ArrayList<TvShow>> listSearchTvShow = new MutableLiveData<>();
+    private MutableLiveData<List<TvShow>> listSearchTvShow = new MutableLiveData<>();
 
     public void searchMovie(String query) {
         Log.d(TAG, "Running");
@@ -112,7 +112,7 @@ public class SearchViewModel extends ViewModel {
         });
     }
 
-    public LiveData<ArrayList<TvShow>> getSearchTvShow() {
+    public LiveData<List<TvShow>> getSearchTvShow() {
         return listSearchTvShow;
     }
 }

@@ -1,4 +1,4 @@
-package id.co.derahh.moviecatalogue.Model.tvShow;
+package id.co.derahh.moviecatalogue.model.movie;
 
 import android.database.Cursor;
 import android.os.Parcel;
@@ -8,14 +8,14 @@ import com.google.gson.annotations.SerializedName;
 
 import org.json.JSONObject;
 
-import id.co.derahh.moviecatalogue.database.DatabaseContract.TvShowColumns;
+import id.co.derahh.moviecatalogue.database.DatabaseContract.MovieColumns;
 
 import static android.provider.BaseColumns._ID;
 import static id.co.derahh.moviecatalogue.database.DatabaseContract.getColumnDouble;
 import static id.co.derahh.moviecatalogue.database.DatabaseContract.getColumnInt;
 import static id.co.derahh.moviecatalogue.database.DatabaseContract.getColumnString;
 
-public class TvShow implements Parcelable {
+public class Movie implements Parcelable {
 
     @SerializedName("id")
     private int id;
@@ -23,20 +23,21 @@ public class TvShow implements Parcelable {
     private double userScore;
     @SerializedName("title")
     private String title;
-    @SerializedName("first_air_date")
+    @SerializedName("release_date")
     private String year;
     @SerializedName("overview")
     private String description;
     @SerializedName("poster_path")
+    private String posterPath;
 
     private String photo;
 
-    public TvShow(JSONObject currentMovie) {
+    public Movie(JSONObject currentMovie) {
         try {
             int id = currentMovie.getInt("id");
             double userScore = currentMovie.getDouble("vote_average");
-            String title = currentMovie.getString("name");
-            String year = currentMovie.getString("first_air_date");
+            String title = currentMovie.getString("title");
+            String year = currentMovie.getString("release_date");
             String description = currentMovie.getString("overview");
             String posterPath = currentMovie.getString("poster_path");
             String photo = "https://image.tmdb.org/t/p/w342/" + posterPath;
@@ -52,13 +53,13 @@ public class TvShow implements Parcelable {
         }
     }
 
-    public TvShow(Cursor cursor){
+    public Movie(Cursor cursor){
         this.id = getColumnInt(cursor, _ID);
-        this.userScore = getColumnDouble(cursor, TvShowColumns.userScore);
-        this.title = getColumnString(cursor, TvShowColumns.title);
-        this.year = getColumnString(cursor, TvShowColumns.year);
-        this.description = getColumnString(cursor, TvShowColumns.description);
-        this.photo = getColumnString(cursor, TvShowColumns.photo);
+        this.userScore = getColumnDouble(cursor, MovieColumns.userScore);
+        this.title = getColumnString(cursor, MovieColumns.title);
+        this.year = getColumnString(cursor, MovieColumns.year);
+        this.description = getColumnString(cursor, MovieColumns.description);
+        this.photo = getColumnString(cursor, MovieColumns.photo);
     }
 
     public int getId() {
@@ -102,11 +103,22 @@ public class TvShow implements Parcelable {
     }
 
     public String getPhoto() {
-        return photo;
+        return "https://image.tmdb.org/t/p/w342/" + getPosterPath();
     }
 
     public void setPhoto(String photo) {
         this.photo = photo;
+    }
+
+    public String getPosterPath() {
+        return posterPath;
+    }
+
+    public void setPosterPath(String posterPath) {
+        this.posterPath = posterPath;
+    }
+
+    public Movie() {
     }
 
     @Override
@@ -121,30 +133,29 @@ public class TvShow implements Parcelable {
         dest.writeString(this.title);
         dest.writeString(this.year);
         dest.writeString(this.description);
+        dest.writeString(this.posterPath);
         dest.writeString(this.photo);
     }
 
-    public TvShow(){
-    }
-
-    private TvShow(Parcel in) {
+    protected Movie(Parcel in) {
         this.id = in.readInt();
         this.userScore = in.readDouble();
         this.title = in.readString();
         this.year = in.readString();
         this.description = in.readString();
+        this.posterPath = in.readString();
         this.photo = in.readString();
     }
 
-    public static final Creator<TvShow> CREATOR = new Creator<TvShow>() {
+    public static final Creator<Movie> CREATOR = new Creator<Movie>() {
         @Override
-        public TvShow createFromParcel(Parcel source) {
-            return new TvShow(source);
+        public Movie createFromParcel(Parcel source) {
+            return new Movie(source);
         }
 
         @Override
-        public TvShow[] newArray(int size) {
-            return new TvShow[size];
+        public Movie[] newArray(int size) {
+            return new Movie[size];
         }
     };
 }
