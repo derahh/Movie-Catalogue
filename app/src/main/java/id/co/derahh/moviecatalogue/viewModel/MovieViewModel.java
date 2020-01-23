@@ -6,19 +6,7 @@ import androidx.lifecycle.ViewModel;
 
 import android.util.Log;
 
-import com.loopj.android.http.AsyncHttpClient;
-import com.loopj.android.http.AsyncHttpResponseHandler;
-
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
-
-import java.util.ArrayList;
-import java.util.Locale;
-
-import cz.msebera.android.httpclient.Header;
 import id.co.derahh.moviecatalogue.API.APIClient;
-import id.co.derahh.moviecatalogue.model.TvShow;
 import id.co.derahh.moviecatalogue.model.movie.MovieResult;
 import id.co.derahh.moviecatalogue.Util.LanguageFormater;
 import id.co.derahh.moviecatalogue.model.tvShow.TvShowResult;

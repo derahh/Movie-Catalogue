@@ -15,6 +15,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.List;
 
 import id.co.derahh.moviecatalogue.model.movie.Movie;
+import id.co.derahh.moviecatalogue.model.movie.MovieResult;
 import id.co.derahh.moviecatalogue.model.tvShow.TvShow;
 import id.co.derahh.moviecatalogue.R;
 import id.co.derahh.moviecatalogue.adapter.MovieAdapter;
@@ -70,12 +71,12 @@ public class SearchActivity extends AppCompatActivity {
         searchTvShowViewModel.getSearchTvShow().observe(this, getListTvShow);
     }
 
-    private final Observer<List<Movie>> getListMovie = new Observer<List<Movie>>() {
+    private final Observer<MovieResult> getListMovie = new Observer<MovieResult>() {
         @Override
-        public void onChanged(@Nullable List<Movie> movies) {
-            if (movies != null) {
-                if (movies.size() > 0) {
-                    showSearchMovieRecyclerView(movies);
+        public void onChanged(@Nullable MovieResult result) {
+            if (result != null) {
+                if (result != null) {
+                    showSearchMovieRecyclerView(result.getResults());
                     progressBar.setVisibility(View.GONE);
                 } else {
                     tvNoData.setVisibility(View.VISIBLE);

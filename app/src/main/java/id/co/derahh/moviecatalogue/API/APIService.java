@@ -19,4 +19,11 @@ public interface APIService {
             @Query("api_key") String key,
             @Query("language") String language
     );
+
+    @GET("search/movie")
+    Call<MovieResult> getSearchMovie(
+            @Query("api_key") String key,
+            @Query("language") String language,
+            @Query("query") String query
+    );
 }
