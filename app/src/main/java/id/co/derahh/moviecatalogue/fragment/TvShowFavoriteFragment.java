@@ -26,12 +26,12 @@ import java.util.ArrayList;
 import java.util.Objects;
 
 import id.co.derahh.moviecatalogue.LoadMovieCallback;
-import id.co.derahh.moviecatalogue.model.TvShow;
 import id.co.derahh.moviecatalogue.R;
 import id.co.derahh.moviecatalogue.adapter.TvShowFavoriteAdapter;
 import id.co.derahh.moviecatalogue.database.DatabaseContract;
 import id.co.derahh.moviecatalogue.database.TvShowHelper;
 import id.co.derahh.moviecatalogue.helper.MappingHelper;
+import id.co.derahh.moviecatalogue.model.tvShow.TvShow;
 
 import static id.co.derahh.moviecatalogue.database.DatabaseContract.TvShowColumns.CONTENT_URI;
 
