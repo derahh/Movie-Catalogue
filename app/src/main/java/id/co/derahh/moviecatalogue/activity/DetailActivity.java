@@ -20,7 +20,7 @@ import com.bumptech.glide.Priority;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.request.RequestOptions;
 
-import id.co.derahh.moviecatalogue.model.TvShow;
+import id.co.derahh.moviecatalogue.model.tvShow.TvShow;
 import id.co.derahh.moviecatalogue.model.movie.Movie;
 import id.co.derahh.moviecatalogue.R;
 import id.co.derahh.moviecatalogue.database.MovieHelper;
