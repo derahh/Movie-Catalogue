@@ -244,7 +244,7 @@ public class DetailActivity extends AppCompatActivity {
         if (movie != null) {
             isAlreadyLoved = SharedPreferencesUtils.getInsertState(this, String.valueOf(movie.getId()));
         } else if (tvShow != null) {
-            isAlreadyLoved = tvShowHelper.isAlreadyLoved(tvShow.getId());
+            isAlreadyLoved = SharedPreferencesUtils.getInsertState(this, String.valueOf(tvShow.getId()));
         }
 
         if (isAlreadyLoved) {
@@ -260,8 +260,8 @@ public class DetailActivity extends AppCompatActivity {
         if (movie != null) {
             isAlreadyLoved = SharedPreferencesUtils.getInsertState(this, String.valueOf(movie.getId()));
         } else if (tvShow != null) {
-            isAlreadyLoved = tvShowHelper.isAlreadyLoved(tvShow.getId());
-        }
+            isAlreadyLoved = SharedPreferencesUtils.getInsertState(this, String.valueOf(tvShow.getId()));
+    }
         Log.d("IsAlreadyLove", String.valueOf(isAlreadyLoved));
     }
 
