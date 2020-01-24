@@ -12,12 +12,14 @@ import java.util.List;
 import id.co.derahh.moviecatalogue.database.MovieDao;
 import id.co.derahh.moviecatalogue.database.MovieRoomDatabase;
 import id.co.derahh.moviecatalogue.model.movie.Movie;
+import id.co.derahh.moviecatalogue.model.tvShow.TvShow;
 
 
 public class FavoriteViewModel extends AndroidViewModel {
 
     private MovieDao movieDao;
     private LiveData<List<Movie>> favoriteMovies;
+    private LiveData<List<TvShow>> favoriteTvShow;
 
     public FavoriteViewModel(@NonNull Application application) {
         super(application);
@@ -25,6 +27,7 @@ public class FavoriteViewModel extends AndroidViewModel {
         MovieRoomDatabase movieDB = MovieRoomDatabase.getDatabase(application);
         movieDao = movieDB.movieDao();
         favoriteMovies = movieDao.getFavMovie();
+        favoriteTvShow = movieDao.getFavTvShow();
     }
 
     public LiveData<List<Movie>> getAllFavoritMovie() {
@@ -32,18 +35,22 @@ public class FavoriteViewModel extends AndroidViewModel {
     }
 
     public void InsertFavorite(Movie movie) {
-        new InsertAsyncTask(movieDao).execute(movie);
+        new InsertMovie(movieDao).execute(movie);
     }
 
     public void DeleteFavorite(Movie movie) {
-        new DeleteAsyncTask(movieDao).execute(movie);
+        new DeleteMovie(movieDao).execute(movie);
     }
 
-    private class OperationAsyncTask extends AsyncTask<Movie, Void, Void> {
+    public void InsertFavorite(TvShow tvShow){
+        new InsertTvShow(movieDao).execute(tvShow);
+    }
+
+    private class OperationMovie extends AsyncTask<Movie, Void, Void> {
 
         MovieDao mAsyncTaskDao;
 
-        OperationAsyncTask(MovieDao dao) {
+        OperationMovie(MovieDao dao) {
             this.mAsyncTaskDao = dao;
         }
 
@@ -53,9 +60,9 @@ public class FavoriteViewModel extends AndroidViewModel {
         }
     }
 
-    private class InsertAsyncTask extends OperationAsyncTask {
+    private class InsertMovie extends OperationMovie {
 
-        InsertAsyncTask(MovieDao dao) {
+        InsertMovie(MovieDao dao) {
             super(dao);
         }
 
@@ -66,15 +73,42 @@ public class FavoriteViewModel extends AndroidViewModel {
         }
     }
 
-    private class DeleteAsyncTask extends OperationAsyncTask {
+    private class DeleteMovie extends OperationMovie {
 
-        DeleteAsyncTask(MovieDao dao) {
+        DeleteMovie(MovieDao dao) {
             super(dao);
         }
 
         @Override
         protected Void doInBackground(Movie... movie) {
             mAsyncTaskDao.delete(movie[0]);
+            return null;
+        }
+    }
+
+    private class OperationTvshow extends AsyncTask<TvShow, Void, Void> {
+
+        MovieDao mAsyncTaskDao;
+
+        OperationTvshow(MovieDao dao) {
+            this.mAsyncTaskDao = dao;
+        }
+
+        @Override
+        protected Void doInBackground(TvShow... tvShow) {
+            return null;
+        }
+    }
+
+    private class InsertTvShow extends OperationTvshow {
+
+        InsertTvShow(MovieDao dao) {
+            super(dao);
+        }
+
+        @Override
+        protected Void doInBackground(TvShow... tvShow) {
+            mAsyncTaskDao.insert(tvShow[0]);
             return null;
         }
     }
