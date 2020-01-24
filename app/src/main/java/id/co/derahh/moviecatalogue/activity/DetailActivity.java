@@ -191,7 +191,8 @@ public class DetailActivity extends AppCompatActivity {
                     tvShowHelper.close();
                     setFavorite();
                 } else {
-                    isAlreadyLoved = true;
+                    //isAlreadyLoved = true;
+                    SharedPreferencesUtils.setInsertState(this, String.valueOf(tvShow.getId()), true);
                     saveTvShowFavorite();
                     setFavorite();
                 }
@@ -224,16 +225,18 @@ public class DetailActivity extends AppCompatActivity {
     }
 
     private void saveTvShowFavorite(){
-        tvShowHelper.open();
-        ContentValues contentValues = new ContentValues();
-        contentValues.put(_ID, tvShow.getId());
-        contentValues.put(TvShowColumns.title, tvShow.getTitle());
-        contentValues.put(TvShowColumns.description, tvShow.getDescription());
-        contentValues.put(TvShowColumns.year, tvShow.getYear());
-        contentValues.put(TvShowColumns.photo, tvShow.getPhoto());
-        contentValues.put(TvShowColumns.userScore, tvShow.getUserScore());
-        getContentResolver().insert(TvShowColumns.CONTENT_URI, contentValues);
-        tvShowHelper.close();
+//        tvShowHelper.open();
+//        ContentValues contentValues = new ContentValues();
+//        contentValues.put(_ID, tvShow.getId());
+//        contentValues.put(TvShowColumns.title, tvShow.getTitle());
+//        contentValues.put(TvShowColumns.description, tvShow.getDescription());
+//        contentValues.put(TvShowColumns.year, tvShow.getYear());
+//        contentValues.put(TvShowColumns.photo, tvShow.getPhoto());
+//        contentValues.put(TvShowColumns.userScore, tvShow.getUserScore());
+//        getContentResolver().insert(TvShowColumns.CONTENT_URI, contentValues);
+//        tvShowHelper.close();
+        favoriteViewModel.InsertFavorite(tvShow);
+        Toast.makeText(this, "Favorited" + tvShow.getTitle(), Toast.LENGTH_SHORT).show();
     }
 
     private void setFavorite() {
@@ -243,7 +246,7 @@ public class DetailActivity extends AppCompatActivity {
         } else if (tvShow != null) {
             isAlreadyLoved = tvShowHelper.isAlreadyLoved(tvShow.getId());
         }
-        
+
         if (isAlreadyLoved) {
             favorite.setIcon(ContextCompat.getDrawable(this, R.drawable.ic_favorite_red_24dp));
         } else {
