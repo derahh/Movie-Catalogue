@@ -169,14 +169,17 @@ public class DetailActivity extends AppCompatActivity {
         if (item.getItemId() == R.id.action_favorite) {
             if (movie != null) {
                 if (isAlreadyLoved) {
-                    isAlreadyLoved = false;
-                    movieHelper.open();
-                    getContentResolver().delete(uri, null, null);
-                    movieHelper.close();
+//                    isAlreadyLoved = false;
+//                    movieHelper.open();
+//                    getContentResolver().delete(uri, null, null);
+//                    movieHelper.close();
+                    SharedPreferencesUtils.setInsertState(this, String.valueOf(movie.getId()), false);
+                    unSaveFavoriteMovie();
                     setFavorite();
                 } else {
+                    //isAlreadyLoved = true;
                     SharedPreferencesUtils.setInsertState(this, String.valueOf(movie.getId()), true);
-                    saveFavoriteMovie(movie);
+                    saveFavoriteMovie();
                     setFavorite();
                 }
                 updateWidgetMovieFavorite();
@@ -200,7 +203,7 @@ public class DetailActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    private void saveFavoriteMovie(Movie movie){
+    private void saveFavoriteMovie(){
 //        movieHelper.open();
 //        ContentValues contentValues = new ContentValues();
 //        contentValues.put(_ID, movie.getId());
@@ -213,6 +216,11 @@ public class DetailActivity extends AppCompatActivity {
 //        movieHelper.close();
         favoriteViewModel.InsertFavorite(movie);
         Toast.makeText(this, "Favorited" + movie.getTitle(), Toast.LENGTH_SHORT).show();
+    }
+
+    private void unSaveFavoriteMovie() {
+        favoriteViewModel.DeleteFavorite(movie);
+        Toast.makeText(this, "Unfavorited" + movie.getTitle(), Toast.LENGTH_SHORT).show();
     }
 
     private void saveTvShowFavorite(){
