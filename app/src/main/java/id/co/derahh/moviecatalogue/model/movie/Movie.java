@@ -4,6 +4,9 @@ import android.database.Cursor;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import androidx.room.Entity;
+import androidx.room.PrimaryKey;
+
 import com.google.gson.annotations.SerializedName;
 
 import org.json.JSONObject;
@@ -15,9 +18,11 @@ import static id.co.derahh.moviecatalogue.database.DatabaseContract.getColumnDou
 import static id.co.derahh.moviecatalogue.database.DatabaseContract.getColumnInt;
 import static id.co.derahh.moviecatalogue.database.DatabaseContract.getColumnString;
 
+@Entity(tableName = "movie_table")
 public class Movie implements Parcelable {
 
     @SerializedName("id")
+    @PrimaryKey
     private int id;
     @SerializedName("vote_average")
     private double userScore;
