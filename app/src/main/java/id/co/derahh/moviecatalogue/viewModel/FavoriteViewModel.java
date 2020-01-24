@@ -42,6 +42,10 @@ public class FavoriteViewModel extends AndroidViewModel {
         new DeleteMovie(movieDao).execute(movie);
     }
 
+    public LiveData<List<TvShow>> getAllFavoritTvShow() {
+        return favoriteTvShow;
+    }
+
     public void InsertFavorite(TvShow tvShow){
         new InsertTvShow(movieDao).execute(tvShow);
     }
