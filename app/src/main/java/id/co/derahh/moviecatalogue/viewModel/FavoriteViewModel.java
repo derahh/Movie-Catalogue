@@ -27,6 +27,10 @@ public class FavoriteViewModel extends AndroidViewModel {
         favoriteMovies = movieDao.getFavMovie();
     }
 
+    public LiveData<List<Movie>> getAllFavoritMovie() {
+        return favoriteMovies;
+    }
+
     public void InsertFavorite(Movie movie) {
         new InsertAsyncTask(movieDao).execute(movie);
     }

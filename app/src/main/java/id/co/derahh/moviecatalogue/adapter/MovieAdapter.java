@@ -29,7 +29,7 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.ViewHolder> 
     private Context mContext;
     private Movie movie;
 
-    private List<Movie> getListData() {
+    public List<Movie> getListData() {
         return listData;
     }
 
