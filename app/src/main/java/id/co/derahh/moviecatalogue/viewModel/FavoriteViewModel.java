@@ -50,6 +50,10 @@ public class FavoriteViewModel extends AndroidViewModel {
         new InsertTvShow(movieDao).execute(tvShow);
     }
 
+    public void DeleteFavorite(TvShow tvShow) {
+        new DeleteTvShow(movieDao).execute(tvShow);
+    }
+
     private class OperationMovie extends AsyncTask<Movie, Void, Void> {
 
         MovieDao mAsyncTaskDao;
@@ -113,6 +117,19 @@ public class FavoriteViewModel extends AndroidViewModel {
         @Override
         protected Void doInBackground(TvShow... tvShow) {
             mAsyncTaskDao.insert(tvShow[0]);
+            return null;
+        }
+    }
+
+    private class DeleteTvShow extends OperationTvshow {
+
+        DeleteTvShow(MovieDao dao) {
+            super(dao);
+        }
+
+        @Override
+        protected Void doInBackground(TvShow... tvShows) {
+            mAsyncTaskDao.delete(tvShows[0]);
             return null;
         }
     }

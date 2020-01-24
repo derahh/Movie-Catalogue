@@ -185,10 +185,12 @@ public class DetailActivity extends AppCompatActivity {
                 updateWidgetMovieFavorite();
             } else if (tvShow != null) {
                 if (isAlreadyLoved) {
-                    isAlreadyLoved = false;
-                    tvShowHelper.open();
-                    getContentResolver().delete(uri, null, null);
-                    tvShowHelper.close();
+//                    isAlreadyLoved = false;
+//                    tvShowHelper.open();
+//                    getContentResolver().delete(uri, null, null);
+//                    tvShowHelper.close();
+                    SharedPreferencesUtils.setInsertState(this, String.valueOf(tvShow.getId()), false);
+                    unSaveFavoriteTvShow();
                     setFavorite();
                 } else {
                     //isAlreadyLoved = true;
@@ -237,6 +239,11 @@ public class DetailActivity extends AppCompatActivity {
 //        tvShowHelper.close();
         favoriteViewModel.InsertFavorite(tvShow);
         Toast.makeText(this, "Favorited" + tvShow.getTitle(), Toast.LENGTH_SHORT).show();
+    }
+
+    private void unSaveFavoriteTvShow() {
+        favoriteViewModel.DeleteFavorite(tvShow);
+        Toast.makeText(this, "Unfavorited" + tvShow.getTitle(), Toast.LENGTH_SHORT).show();
     }
 
     private void setFavorite() {
