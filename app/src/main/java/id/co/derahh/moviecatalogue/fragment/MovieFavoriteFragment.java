@@ -108,7 +108,7 @@ public class MovieFavoriteFragment extends Fragment /*implements LoadMovieCallba
     private Observer<List<Movie>> getFavoriteMovie = new Observer<List<Movie>>() {
         @Override
         public void onChanged(List<Movie> movies) {
-            if (movies != null) {
+            if (movies.size() > 0) {
                 adapter.setListData(movies);
                 progressBar.setVisibility(View.GONE);
             }else {
