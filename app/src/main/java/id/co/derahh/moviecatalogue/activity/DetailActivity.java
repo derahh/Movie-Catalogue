@@ -238,6 +238,12 @@ public class DetailActivity extends AppCompatActivity {
 
     private void setFavorite() {
         MenuItem favorite = menu.findItem(R.id.action_favorite);
+        if (movie != null) {
+            isAlreadyLoved = SharedPreferencesUtils.getInsertState(this, String.valueOf(movie.getId()));
+        } else if (tvShow != null) {
+            isAlreadyLoved = tvShowHelper.isAlreadyLoved(tvShow.getId());
+        }
+        
         if (isAlreadyLoved) {
             favorite.setIcon(ContextCompat.getDrawable(this, R.drawable.ic_favorite_red_24dp));
         } else {
