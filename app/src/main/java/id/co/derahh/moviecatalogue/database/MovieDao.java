@@ -9,6 +9,7 @@ import androidx.room.Query;
 import java.util.List;
 
 import id.co.derahh.moviecatalogue.model.movie.Movie;
+import id.co.derahh.moviecatalogue.model.tvShow.TvShow;
 
 @Dao
 public interface MovieDao {
@@ -21,4 +22,13 @@ public interface MovieDao {
 
     @Query("SELECT * FROM movie_table")
     LiveData<List<Movie>> getFavMovie();
+
+    @Insert
+    void insert(TvShow tvShow);
+
+    @Delete
+    void delete(TvShow tvShow);
+
+    @Query("SELECT * FROM tv_show_table")
+    LiveData<List<TvShow>> getFavTvShow();
 }
