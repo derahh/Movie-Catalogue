@@ -7,8 +7,9 @@ import androidx.room.Room;
 import androidx.room.RoomDatabase;
 
 import id.co.derahh.moviecatalogue.model.movie.Movie;
+import id.co.derahh.moviecatalogue.model.tvShow.TvShow;
 
-@Database(entities = {Movie.class}, version = 1)
+@Database(entities = {Movie.class, TvShow.class}, version = 2)
 public abstract class MovieRoomDatabase extends RoomDatabase {
 
     public abstract MovieDao movieDao();
@@ -22,6 +23,7 @@ public abstract class MovieRoomDatabase extends RoomDatabase {
                     mInstance = Room.databaseBuilder(context.getApplicationContext(),
                             MovieRoomDatabase.class, "movie_db")
                             .allowMainThreadQueries()
+                            .fallbackToDestructiveMigration()
                             .build();
                 }
             }
