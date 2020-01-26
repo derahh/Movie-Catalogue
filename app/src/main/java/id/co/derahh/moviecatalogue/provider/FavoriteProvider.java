@@ -12,7 +12,9 @@ import androidx.annotation.Nullable;
 
 import java.util.Objects;
 
+import id.co.derahh.moviecatalogue.database.MovieDao;
 import id.co.derahh.moviecatalogue.database.MovieHelper;
+import id.co.derahh.moviecatalogue.database.MovieRoomDatabase;
 import id.co.derahh.moviecatalogue.database.TvShowHelper;
 import id.co.derahh.moviecatalogue.fragment.MovieFavoriteFragment;
 import id.co.derahh.moviecatalogue.fragment.TvShowFavoriteFragment;
@@ -29,7 +31,10 @@ public class FavoriteProvider extends ContentProvider {
     private static final int MOVIE_ID = 2;
     private static final int TV_SHOW = 3;
     private static final int TV_SHOW_ID = 4;
+
     private static final UriMatcher sUriMatcher = new UriMatcher(UriMatcher.NO_MATCH);
+
+    private MovieDao movieDao;
 
     private MovieHelper movieHelper;
     private TvShowHelper tvShowHelper;
@@ -44,29 +49,36 @@ public class FavoriteProvider extends ContentProvider {
 
     @Override
     public boolean onCreate() {
-        movieHelper = MovieHelper.getInstance(getContext());
-        tvShowHelper = TvShowHelper.getInstance(getContext());
+//        movieHelper = MovieHelper.getInstance(getContext());
+//        tvShowHelper = TvShowHelper.getInstance(getContext());
+        MovieRoomDatabase database = MovieRoomDatabase.getDatabase(getContext());
+        movieDao = database.movieDao();
         return true;
     }
 
     @Nullable
     @Override
-    public Cursor query(@NonNull Uri uri, @Nullable String[] projection, @Nullable String selection, @Nullable String[] selectionArgs, @Nullable String sortOrder) {
+    public Cursor query(@NonNull Uri uri, @Nullable String[] projection, @Nullable String selection,
+                        @Nullable String[] selectionArgs, @Nullable String sortOrder) {
         movieHelper.open();
         tvShowHelper.open();
         Cursor cursor;
         switch (sUriMatcher.match(uri)) {
             case MOVIE:
-                cursor = movieHelper.queryProvider();
+                //cursor = movieHelper.queryProvider();
+                cursor = movieDao.selectAllMovie();
                 break;
             case MOVIE_ID:
-                cursor = movieHelper.queryByIdProvider(uri.getLastPathSegment());
+                //cursor = movieHelper.queryByIdProvider(uri.getLastPathSegment());
+                cursor = movieDao.selectMovieById(uri.getLastPathSegment());
                 break;
             case TV_SHOW:
-                cursor = tvShowHelper.queryProvider();
+                //cursor = tvShowHelper.queryProvider();
+                cursor = movieDao.selectAllTvShow();
                 break;
             case TV_SHOW_ID:
-                cursor = tvShowHelper.queryByIdProvider(uri.getLastPathSegment());
+                //cursor = tvShowHelper.queryByIdProvider(uri.getLastPathSegment());
+                cursor = movieDao.selectTvShowById(uri.getLastPathSegment());
                 break;
             default:
                 cursor = null;
@@ -84,19 +96,25 @@ public class FavoriteProvider extends ContentProvider {
     @Nullable
     @Override
     public Uri insert(@NonNull Uri uri, @Nullable ContentValues values) {
-        movieHelper.open();
-        tvShowHelper.open();
+//        movieHelper.open();
+//        tvShowHelper.open();
         long added;
         Uri favoriteUri;
         switch (sUriMatcher.match(uri)) {
             case MOVIE:
-                added = movieHelper.insertProvider(values);
-                Objects.requireNonNull(getContext()).getContentResolver().notifyChange(MovieColumns.CONTENT_URI, new MovieFavoriteFragment.DataObserver(new Handler(), getContext()));
+                //added = movieHelper.insertProvider(values);
+                added = movieDao.insertProvider(values);
+                Objects.requireNonNull(getContext()).getContentResolver().notifyChange(
+                        MovieColumns.CONTENT_URI, new MovieFavoriteFragment.DataObserver(
+                                new Handler(), getContext()));
                 favoriteUri = Uri.parse(MovieColumns.CONTENT_URI + "/" + added);
                 break;
             case TV_SHOW:
-                added = tvShowHelper.insertProvider(values);
-                Objects.requireNonNull(getContext()).getContentResolver().notifyChange(TvShowColumns.CONTENT_URI, new TvShowFavoriteFragment.DataObserver(new Handler(), getContext()));
+                //added = tvShowHelper.insertProvider(values);
+                added = movieDao.insertProvider(values);
+                Objects.requireNonNull(getContext()).getContentResolver().notifyChange(
+                        TvShowColumns.CONTENT_URI, new TvShowFavoriteFragment.DataObserver(
+                                new Handler(), getContext()));
                 favoriteUri = Uri.parse(TvShowColumns.CONTENT_URI + "/" + added);
                 break;
             default:
