@@ -14,8 +14,6 @@ import java.util.List;
 import id.co.derahh.moviecatalogue.model.movie.Movie;
 import id.co.derahh.moviecatalogue.model.tvShow.TvShow;
 
-import static android.provider.BaseColumns._ID;
-
 @Dao
 public interface MovieDao {
 
@@ -36,19 +34,4 @@ public interface MovieDao {
 
     @Query("SELECT * FROM tv_show_table")
     LiveData<List<TvShow>> getFavTvShow();
-
-    @Query("SELECT * FROM movie_table ORDER BY "+_ID+" ASC")
-    Cursor selectAllMovie();
-
-    @Query("SELECT * FROM movie_table WHERE "+_ID+ " = :id")
-    Cursor selectMovieById(String id);
-
-    @Query("SELECT * FROM tv_show_table ORDER BY "+_ID+" ASC")
-    Cursor selectAllTvShow();
-
-    @Query("SELECT * FROM tv_show_table WHERE "+_ID+ " = :id")
-    Cursor selectTvShowById(String id);
-
-    @Query("INSERT INTO ")
-    long insertProvider(ContentValues values);
 }

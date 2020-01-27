@@ -65,14 +65,6 @@
             android:name=".widget.StackWidgetService"
             android:permission="android.permission.BIND_REMOTEVIEWS" />
 
-        <provider
-            android:name=".provider.FavoriteProvider"
-            android:authorities="id.co.derahh.moviecatalogue.database"
-            android:enabled="true"
-            android:exported="true"
-            android:readPermission="id.co.derahh.moviecatalogue.READ_DATABASE"
-            android:writePermission="id.co.derahh.moviecatalogue.WRITE_DATABASE" />
-
         <receiver
             android:name=".receiver.DailyReminderReceiver"
             android:enabled="true"

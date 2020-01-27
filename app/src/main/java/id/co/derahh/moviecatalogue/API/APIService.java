@@ -33,4 +33,11 @@ public interface APIService {
             @Query("language") String language,
             @Query("query") String query
     );
+
+    @GET("discover/movie")
+    Call<MovieResult> releaseMovie(
+            @Query("api_key") String key,
+            @Query("primary_release_date.gte") String date1,
+            @Query("primary_release_date.lte") String date2
+    );
 }

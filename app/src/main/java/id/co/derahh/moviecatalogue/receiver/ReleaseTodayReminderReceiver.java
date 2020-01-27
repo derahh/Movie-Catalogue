@@ -15,6 +15,7 @@ import android.util.Log;
 
 import androidx.core.app.NotificationCompat;
 import androidx.core.content.ContextCompat;
+import androidx.lifecycle.MutableLiveData;
 
 import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.AsyncHttpResponseHandler;
@@ -30,10 +31,15 @@ import java.util.Date;
 import java.util.Locale;
 
 import cz.msebera.android.httpclient.Header;
+import id.co.derahh.moviecatalogue.API.APIClient;
 import id.co.derahh.moviecatalogue.model.movie.Movie;
 import id.co.derahh.moviecatalogue.R;
 import id.co.derahh.moviecatalogue.activity.DetailActivity;
 import id.co.derahh.moviecatalogue.database.DatabaseContract;
+import id.co.derahh.moviecatalogue.model.movie.MovieResult;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class ReleaseTodayReminderReceiver extends BroadcastReceiver {
 
@@ -41,6 +47,8 @@ public class ReleaseTodayReminderReceiver extends BroadcastReceiver {
     private static final int NOTIF_ID_REPEATING = 102;
     private static final String CHANNEL_ID = "todayremainder" ;
     public static CharSequence CHANNEL_NAME = "NOTIFICATION";
+
+    private APIClient api = APIClient.getInstance();
 
     public ReleaseTodayReminderReceiver() {
     }
@@ -52,33 +60,18 @@ public class ReleaseTodayReminderReceiver extends BroadcastReceiver {
         Date date = new Date();
         final String currentDate = sdf.format(date);
 
-        AsyncHttpClient client = new AsyncHttpClient();
-        String url = "https://api.themoviedb.org/3/discover/movie?api_key="+ API_KEY +"&primary_release_date.gte="+ currentDate +"&primary_release_date.lte="+ currentDate;
-
-        client.get(url, new AsyncHttpResponseHandler() {
+        api.getAPI().releaseMovie(API_KEY, currentDate, currentDate).enqueue(new Callback<MovieResult>() {
             @Override
-            public void onSuccess(int statusCode, Header[] headers, byte[] responseBody) {
-                try {
-                    String result = new String(responseBody);
-                    JSONObject responseObject = new JSONObject(result);
-                    JSONArray results = responseObject.getJSONArray("results");
-
-                    for (int i = 0; i < results.length(); i++) {
-                        JSONObject movie = results.getJSONObject(i);
-                        Movie listMovie = new Movie(movie);
-                        if (!listMovie.getPhoto().equals("null")) {
-                            showNotification(context, listMovie);
-                        }
-                    }
-
-                } catch (Exception e) {
-                    Log.d("Exception", e.getMessage());
+            public void onResponse(Call<MovieResult> call, Response<MovieResult> response) {
+                for (int i = 0; i < response.body().getResults().size(); i++) {
+                    Movie movie = response.body().getResults().get(i);
+                    showNotification(context, movie);
                 }
             }
 
             @Override
-            public void onFailure(int statusCode, Header[] headers, byte[] responseBody, Throwable error) {
-                Log.d("onFailure", "Get data failed!");
+            public void onFailure(Call<MovieResult> call, Throwable t) {
+
             }
         });
     }
