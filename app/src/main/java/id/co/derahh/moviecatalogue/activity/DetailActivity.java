@@ -29,7 +29,6 @@ import id.co.derahh.moviecatalogue.R;
 import id.co.derahh.moviecatalogue.database.MovieHelper;
 import id.co.derahh.moviecatalogue.database.TvShowHelper;
 import id.co.derahh.moviecatalogue.viewModel.FavoriteViewModel;
-import id.co.derahh.moviecatalogue.widget.ImagesBannerWidget;
 
 import static android.provider.BaseColumns._ID;
 import static id.co.derahh.moviecatalogue.database.DatabaseContract.MovieColumns;
@@ -182,7 +181,6 @@ public class DetailActivity extends AppCompatActivity {
                     saveFavoriteMovie();
                     setFavorite();
                 }
-                updateWidgetMovieFavorite();
             } else if (tvShow != null) {
                 if (isAlreadyLoved) {
 //                    isAlreadyLoved = false;
@@ -198,9 +196,7 @@ public class DetailActivity extends AppCompatActivity {
                     saveTvShowFavorite();
                     setFavorite();
                 }
-                updateWidgetMovieFavorite();
             }
-            updateWidgetMovieFavorite();
             return true;
         }
         return super.onOptionsItemSelected(item);
@@ -270,11 +266,5 @@ public class DetailActivity extends AppCompatActivity {
             isAlreadyLoved = SharedPreferencesUtils.getInsertState(this, String.valueOf(tvShow.getId()));
     }
         Log.d("IsAlreadyLove", String.valueOf(isAlreadyLoved));
-    }
-
-    private void updateWidgetMovieFavorite() {
-        Intent updateWidget = new Intent(this, ImagesBannerWidget.class);
-        updateWidget.setAction(ImagesBannerWidget.UPDATE_WIDGET);
-        sendBroadcast(updateWidget);
     }
 }
