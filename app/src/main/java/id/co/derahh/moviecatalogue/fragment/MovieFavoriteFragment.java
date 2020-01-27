@@ -23,7 +23,6 @@ import java.util.List;
 import id.co.derahh.moviecatalogue.adapter.MovieAdapter;
 import id.co.derahh.moviecatalogue.model.movie.Movie;
 import id.co.derahh.moviecatalogue.R;
-import id.co.derahh.moviecatalogue.database.MovieHelper;
 import id.co.derahh.moviecatalogue.viewModel.FavoriteViewModel;
 
 /**
@@ -38,7 +37,6 @@ public class MovieFavoriteFragment extends Fragment /*implements LoadMovieCallba
     private TextView tvNoData;
 
     private MovieAdapter adapter;
-    private MovieHelper movieHelper;
 
     private FavoriteViewModel favoriteViewModel;
 

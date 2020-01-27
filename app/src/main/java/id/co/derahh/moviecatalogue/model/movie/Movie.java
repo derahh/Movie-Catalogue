@@ -11,8 +11,6 @@ import com.google.gson.annotations.SerializedName;
 
 import org.json.JSONObject;
 
-import id.co.derahh.moviecatalogue.database.DatabaseContract.MovieColumns;
-
 import static android.provider.BaseColumns._ID;
 import static id.co.derahh.moviecatalogue.database.DatabaseContract.getColumnDouble;
 import static id.co.derahh.moviecatalogue.database.DatabaseContract.getColumnInt;

@@ -1,7 +1,5 @@
 package id.co.derahh.moviecatalogue.activity;
 
-import android.content.ContentValues;
-import android.content.Intent;
 import android.database.Cursor;
 import android.graphics.drawable.GradientDrawable;
 import android.net.Uri;
@@ -26,13 +24,7 @@ import id.co.derahh.moviecatalogue.Util.SharedPreferencesUtils;
 import id.co.derahh.moviecatalogue.model.tvShow.TvShow;
 import id.co.derahh.moviecatalogue.model.movie.Movie;
 import id.co.derahh.moviecatalogue.R;
-import id.co.derahh.moviecatalogue.database.MovieHelper;
-import id.co.derahh.moviecatalogue.database.TvShowHelper;
 import id.co.derahh.moviecatalogue.viewModel.FavoriteViewModel;
-
-import static android.provider.BaseColumns._ID;
-import static id.co.derahh.moviecatalogue.database.DatabaseContract.MovieColumns;
-import static id.co.derahh.moviecatalogue.database.DatabaseContract.TvShowColumns;
 
 public class DetailActivity extends AppCompatActivity {
 
@@ -48,9 +40,7 @@ public class DetailActivity extends AppCompatActivity {
 
     private Menu menu;
     private Movie movie;
-    private MovieHelper movieHelper;
     private TvShow tvShow;
-    private TvShowHelper tvShowHelper;
     private Uri uri;
     private FavoriteViewModel favoriteViewModel;
 
@@ -64,9 +54,6 @@ public class DetailActivity extends AppCompatActivity {
         imgPhoto = findViewById(R.id.img_photo);
         tvYear = findViewById(R.id.tv_year);
         tvUserScore = findViewById(R.id.user_score);
-
-        //movieHelper = MovieHelper.getInstance(getApplicationContext());
-        tvShowHelper = TvShowHelper.getInstance(getApplicationContext());
 
         favoriteViewModel = ViewModelProviders.of(this).get(FavoriteViewModel.class);
 
@@ -168,30 +155,20 @@ public class DetailActivity extends AppCompatActivity {
         if (item.getItemId() == R.id.action_favorite) {
             if (movie != null) {
                 if (isAlreadyLoved) {
-//                    isAlreadyLoved = false;
-//                    movieHelper.open();
-//                    getContentResolver().delete(uri, null, null);
-//                    movieHelper.close();
                     SharedPreferencesUtils.setInsertState(this, String.valueOf(movie.getId()), false);
                     unSaveFavoriteMovie();
                     setFavorite();
                 } else {
-                    //isAlreadyLoved = true;
                     SharedPreferencesUtils.setInsertState(this, String.valueOf(movie.getId()), true);
                     saveFavoriteMovie();
                     setFavorite();
                 }
             } else if (tvShow != null) {
                 if (isAlreadyLoved) {
-//                    isAlreadyLoved = false;
-//                    tvShowHelper.open();
-//                    getContentResolver().delete(uri, null, null);
-//                    tvShowHelper.close();
                     SharedPreferencesUtils.setInsertState(this, String.valueOf(tvShow.getId()), false);
                     unSaveFavoriteTvShow();
                     setFavorite();
                 } else {
-                    //isAlreadyLoved = true;
                     SharedPreferencesUtils.setInsertState(this, String.valueOf(tvShow.getId()), true);
                     saveTvShowFavorite();
                     setFavorite();
@@ -203,16 +180,6 @@ public class DetailActivity extends AppCompatActivity {
     }
 
     private void saveFavoriteMovie(){
-//        movieHelper.open();
-//        ContentValues contentValues = new ContentValues();
-//        contentValues.put(_ID, movie.getId());
-//        contentValues.put(MovieColumns.title, movie.getTitle());
-//        contentValues.put(MovieColumns.description, movie.getDescription());
-//        contentValues.put(MovieColumns.year, movie.getYear());
-//        contentValues.put(MovieColumns.photo, movie.getPhoto());
-//        contentValues.put(MovieColumns.userScore, movie.getUserScore());
-//        getContentResolver().insert(MovieColumns.CONTENT_URI, contentValues);
-//        movieHelper.close();
         favoriteViewModel.InsertFavorite(movie);
         Toast.makeText(this, "Favorited" + movie.getTitle(), Toast.LENGTH_SHORT).show();
     }
@@ -223,16 +190,6 @@ public class DetailActivity extends AppCompatActivity {
     }
 
     private void saveTvShowFavorite(){
-//        tvShowHelper.open();
-//        ContentValues contentValues = new ContentValues();
-//        contentValues.put(_ID, tvShow.getId());
-//        contentValues.put(TvShowColumns.title, tvShow.getTitle());
-//        contentValues.put(TvShowColumns.description, tvShow.getDescription());
-//        contentValues.put(TvShowColumns.year, tvShow.getYear());
-//        contentValues.put(TvShowColumns.photo, tvShow.getPhoto());
-//        contentValues.put(TvShowColumns.userScore, tvShow.getUserScore());
-//        getContentResolver().insert(TvShowColumns.CONTENT_URI, contentValues);
-//        tvShowHelper.close();
         favoriteViewModel.InsertFavorite(tvShow);
         Toast.makeText(this, "Favorited" + tvShow.getTitle(), Toast.LENGTH_SHORT).show();
     }

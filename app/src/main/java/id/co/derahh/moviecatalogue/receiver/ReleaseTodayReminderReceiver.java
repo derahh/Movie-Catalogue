@@ -11,17 +11,9 @@ import android.content.Intent;
 import android.media.RingtoneManager;
 import android.net.Uri;
 import android.os.Build;
-import android.util.Log;
 
 import androidx.core.app.NotificationCompat;
 import androidx.core.content.ContextCompat;
-import androidx.lifecycle.MutableLiveData;
-
-import com.loopj.android.http.AsyncHttpClient;
-import com.loopj.android.http.AsyncHttpResponseHandler;
-
-import org.json.JSONArray;
-import org.json.JSONObject;
 
 import java.text.DateFormat;
 import java.text.ParseException;
@@ -30,12 +22,10 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
 
-import cz.msebera.android.httpclient.Header;
 import id.co.derahh.moviecatalogue.API.APIClient;
 import id.co.derahh.moviecatalogue.model.movie.Movie;
 import id.co.derahh.moviecatalogue.R;
 import id.co.derahh.moviecatalogue.activity.DetailActivity;
-import id.co.derahh.moviecatalogue.database.DatabaseContract;
 import id.co.derahh.moviecatalogue.model.movie.MovieResult;
 import retrofit2.Call;
 import retrofit2.Callback;
