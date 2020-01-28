@@ -2,7 +2,6 @@ package id.co.derahh.moviecatalogue.adapter;
 
 import android.content.Context;
 import android.content.Intent;
-import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,17 +16,16 @@ import com.bumptech.glide.Glide;
 import java.util.ArrayList;
 import java.util.List;
 
-import id.co.derahh.moviecatalogue.model.tvShow.TvShow;
+import id.co.derahh.moviecatalogue.database.model.tvShow.TvShow;
 import id.co.derahh.moviecatalogue.R;
 import id.co.derahh.moviecatalogue.activity.DetailActivity;
-
-import static id.co.derahh.moviecatalogue.database.DatabaseContract.TvShowColumns.CONTENT_URI;
 
 public class TvShowAdapter extends RecyclerView.Adapter<TvShowAdapter.TvShowViewHolder> {
 
     private Context mContext;
     private TvShow tvShow;
-    private List<TvShow> getListData() {
+
+    public List<TvShow> getListData() {
         return listData;
     }
 
@@ -60,7 +58,7 @@ public class TvShowAdapter extends RecyclerView.Adapter<TvShowAdapter.TvShowView
             @Override
             public void onClick(View v) {
                 tvShow = getListData().get(i);
-                showSelectedTvShow(tvShow, i);
+                showSelectedTvShow(tvShow);
             }
         });
     }
@@ -83,10 +81,8 @@ public class TvShowAdapter extends RecyclerView.Adapter<TvShowAdapter.TvShowView
         }
     }
 
-    private void showSelectedTvShow(TvShow tvShow, int position){
+    private void showSelectedTvShow(TvShow tvShow){
         Intent detailTvShowIntent = new Intent(mContext, DetailActivity.class);
-        Uri uri = Uri.parse(CONTENT_URI + "/" + getListData().get(position).getId());
-        detailTvShowIntent.setData(uri);
         detailTvShowIntent.putExtra(DetailActivity.EXTRA_TV_SHOW, tvShow);
         mContext.startActivity(detailTvShowIntent);
     }
