@@ -23,10 +23,10 @@ import java.util.Date;
 import java.util.Locale;
 
 import id.co.derahh.moviecatalogue.API.APIClient;
-import id.co.derahh.moviecatalogue.model.movie.Movie;
+import id.co.derahh.moviecatalogue.database.model.movie.Movie;
 import id.co.derahh.moviecatalogue.R;
 import id.co.derahh.moviecatalogue.activity.DetailActivity;
-import id.co.derahh.moviecatalogue.model.movie.MovieResult;
+import id.co.derahh.moviecatalogue.database.model.movie.MovieResult;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
