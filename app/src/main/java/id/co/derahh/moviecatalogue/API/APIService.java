@@ -1,7 +1,7 @@
 package id.co.derahh.moviecatalogue.API;
 
-import id.co.derahh.moviecatalogue.model.movie.MovieResult;
-import id.co.derahh.moviecatalogue.model.tvShow.TvShowResult;
+import id.co.derahh.moviecatalogue.database.model.movie.MovieResult;
+import id.co.derahh.moviecatalogue.database.model.tvShow.TvShowResult;
 import retrofit2.Call;
 import retrofit2.http.GET;
 import retrofit2.http.Query;
