@@ -32,7 +32,7 @@ import java.util.Objects;
 import id.co.derahh.moviecatalogue.R;
 import id.co.derahh.moviecatalogue.activity.SearchActivity;
 import id.co.derahh.moviecatalogue.adapter.TvShowAdapter;
-import id.co.derahh.moviecatalogue.model.tvShow.TvShowResult;
+import id.co.derahh.moviecatalogue.database.model.tvShow.TvShowResult;
 import id.co.derahh.moviecatalogue.viewModel.MovieViewModel;
 
 /**
