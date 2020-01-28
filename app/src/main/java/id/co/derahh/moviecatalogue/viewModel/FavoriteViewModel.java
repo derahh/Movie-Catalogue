@@ -11,8 +11,8 @@ import java.util.List;
 
 import id.co.derahh.moviecatalogue.database.MovieDao;
 import id.co.derahh.moviecatalogue.database.MovieRoomDatabase;
-import id.co.derahh.moviecatalogue.model.movie.Movie;
-import id.co.derahh.moviecatalogue.model.tvShow.TvShow;
+import id.co.derahh.moviecatalogue.database.model.movie.Movie;
+import id.co.derahh.moviecatalogue.database.model.tvShow.TvShow;
 
 
 public class FavoriteViewModel extends AndroidViewModel {
