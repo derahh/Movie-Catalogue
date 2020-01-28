@@ -7,9 +7,9 @@ import androidx.lifecycle.ViewModel;
 import android.util.Log;
 
 import id.co.derahh.moviecatalogue.API.APIClient;
-import id.co.derahh.moviecatalogue.model.movie.MovieResult;
+import id.co.derahh.moviecatalogue.database.model.movie.MovieResult;
 import id.co.derahh.moviecatalogue.Util.LanguageFormater;
-import id.co.derahh.moviecatalogue.model.tvShow.TvShowResult;
+import id.co.derahh.moviecatalogue.database.model.tvShow.TvShowResult;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
