@@ -2,7 +2,6 @@ package id.co.derahh.moviecatalogue.adapter;
 
 import android.content.Context;
 import android.content.Intent;
-import android.net.Uri;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -18,11 +17,9 @@ import com.bumptech.glide.Glide;
 import java.util.ArrayList;
 import java.util.List;
 
-import id.co.derahh.moviecatalogue.model.movie.Movie;
+import id.co.derahh.moviecatalogue.database.model.movie.Movie;
 import id.co.derahh.moviecatalogue.R;
 import id.co.derahh.moviecatalogue.activity.DetailActivity;
-
-import static id.co.derahh.moviecatalogue.database.DatabaseContract.MovieColumns.CONTENT_URI;
 
 public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.ViewHolder> {
 
@@ -63,7 +60,7 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.ViewHolder> 
             @Override
             public void onClick(View v) {
                 movie = getListData().get(i);
-                showSelectedMovie(movie, i);
+                showSelectedMovie(movie);
                 Log.i("extra_poster", movie.getPosterPath());
             }
         });
@@ -87,10 +84,8 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.ViewHolder> 
         }
     }
 
-    private void showSelectedMovie(Movie movie, int position){
+    private void showSelectedMovie(Movie movie){
         Intent detailMovieIntent = new Intent(mContext, DetailActivity.class);
-        Uri uri = Uri.parse(CONTENT_URI + "/" + getListData().get(position).getId());
-        detailMovieIntent.setData(uri);
         detailMovieIntent.putExtra(DetailActivity.EXTRA_MOVIE, movie);
         mContext.startActivity(detailMovieIntent);
     }
