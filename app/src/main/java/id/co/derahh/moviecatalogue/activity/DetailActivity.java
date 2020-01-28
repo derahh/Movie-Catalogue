@@ -21,8 +21,8 @@ import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.request.RequestOptions;
 
 import id.co.derahh.moviecatalogue.Util.SharedPreferencesUtils;
-import id.co.derahh.moviecatalogue.model.tvShow.TvShow;
-import id.co.derahh.moviecatalogue.model.movie.Movie;
+import id.co.derahh.moviecatalogue.database.model.tvShow.TvShow;
+import id.co.derahh.moviecatalogue.database.model.movie.Movie;
 import id.co.derahh.moviecatalogue.R;
 import id.co.derahh.moviecatalogue.viewModel.FavoriteViewModel;
 
@@ -32,7 +32,6 @@ public class DetailActivity extends AppCompatActivity {
     ImageView imgPhoto;
 
     private boolean isAlreadyLoved = false;
-    private String id;
 
     public static final String EXTRA_ID = "extra_id";
     public static final String EXTRA_MOVIE = "extra_movie";
@@ -41,7 +40,6 @@ public class DetailActivity extends AppCompatActivity {
     private Menu menu;
     private Movie movie;
     private TvShow tvShow;
-    private Uri uri;
     private FavoriteViewModel favoriteViewModel;
 
     @Override
@@ -66,7 +64,7 @@ public class DetailActivity extends AppCompatActivity {
             showTvShowData();
         }
 
-        uri = getIntent().getData();
+        Uri uri = getIntent().getData();
         if (uri != null) {
             Cursor cursor = getContentResolver().query(uri, null, null, null, null);
             Log.d("id: ", "Id: " + getIntent().getData());
