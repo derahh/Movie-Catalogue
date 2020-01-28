@@ -1,8 +1,5 @@
 package id.co.derahh.moviecatalogue.database;
 
-import android.content.ContentValues;
-import android.database.Cursor;
-
 import androidx.lifecycle.LiveData;
 import androidx.room.Dao;
 import androidx.room.Delete;
@@ -11,8 +8,8 @@ import androidx.room.Query;
 
 import java.util.List;
 
-import id.co.derahh.moviecatalogue.model.movie.Movie;
-import id.co.derahh.moviecatalogue.model.tvShow.TvShow;
+import id.co.derahh.moviecatalogue.database.model.movie.Movie;
+import id.co.derahh.moviecatalogue.database.model.tvShow.TvShow;
 
 @Dao
 public interface MovieDao {
