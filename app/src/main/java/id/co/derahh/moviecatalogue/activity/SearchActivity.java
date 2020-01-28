@@ -14,13 +14,13 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.List;
 
-import id.co.derahh.moviecatalogue.model.movie.Movie;
-import id.co.derahh.moviecatalogue.model.movie.MovieResult;
-import id.co.derahh.moviecatalogue.model.tvShow.TvShow;
+import id.co.derahh.moviecatalogue.database.model.movie.Movie;
+import id.co.derahh.moviecatalogue.database.model.movie.MovieResult;
+import id.co.derahh.moviecatalogue.database.model.tvShow.TvShow;
 import id.co.derahh.moviecatalogue.R;
 import id.co.derahh.moviecatalogue.adapter.MovieAdapter;
 import id.co.derahh.moviecatalogue.adapter.TvShowAdapter;
-import id.co.derahh.moviecatalogue.model.tvShow.TvShowResult;
+import id.co.derahh.moviecatalogue.database.model.tvShow.TvShowResult;
 import id.co.derahh.moviecatalogue.viewModel.SearchViewModel;
 
 public class SearchActivity extends AppCompatActivity {
@@ -76,13 +76,11 @@ public class SearchActivity extends AppCompatActivity {
         @Override
         public void onChanged(@Nullable MovieResult result) {
             if (result != null) {
-                if (result != null) {
-                    showSearchMovieRecyclerView(result.getResults());
-                    progressBar.setVisibility(View.GONE);
-                } else {
-                    tvNoData.setVisibility(View.VISIBLE);
-                    progressBar.setVisibility(View.GONE);
-                }
+                showSearchMovieRecyclerView(result.getResults());
+                progressBar.setVisibility(View.GONE);
+            } else {
+                tvNoData.setVisibility(View.VISIBLE);
+                progressBar.setVisibility(View.GONE);
             }
         }
     };
@@ -91,13 +89,11 @@ public class SearchActivity extends AppCompatActivity {
         @Override
         public void onChanged(@Nullable TvShowResult result) {
             if (result != null) {
-                if (result != null) {
-                    showSearchTvShowRecyclerView(result.getResults());
-                    progressBar.setVisibility(View.GONE);
-                } else {
-                    tvNoData.setVisibility(View.VISIBLE);
-                    progressBar.setVisibility(View.GONE);
-                }
+                showSearchTvShowRecyclerView(result.getResults());
+                progressBar.setVisibility(View.GONE);
+            } else {
+                tvNoData.setVisibility(View.VISIBLE);
+                progressBar.setVisibility(View.GONE);
             }
         }
     };
