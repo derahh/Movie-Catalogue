@@ -21,7 +21,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import id.co.derahh.moviecatalogue.adapter.MovieAdapter;
-import id.co.derahh.moviecatalogue.model.movie.Movie;
+import id.co.derahh.moviecatalogue.database.model.movie.Movie;
 import id.co.derahh.moviecatalogue.R;
 import id.co.derahh.moviecatalogue.viewModel.FavoriteViewModel;
 
