@@ -6,24 +6,10 @@ import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
-import com.loopj.android.http.AsyncHttpClient;
-import com.loopj.android.http.AsyncHttpResponseHandler;
-
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
-
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Locale;
-
-import cz.msebera.android.httpclient.Header;
 import id.co.derahh.moviecatalogue.API.APIClient;
 import id.co.derahh.moviecatalogue.Util.LanguageFormater;
-import id.co.derahh.moviecatalogue.model.movie.Movie;
-import id.co.derahh.moviecatalogue.model.movie.MovieResult;
-import id.co.derahh.moviecatalogue.model.tvShow.TvShow;
-import id.co.derahh.moviecatalogue.model.tvShow.TvShowResult;
+import id.co.derahh.moviecatalogue.database.model.movie.MovieResult;
+import id.co.derahh.moviecatalogue.database.model.tvShow.TvShowResult;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
